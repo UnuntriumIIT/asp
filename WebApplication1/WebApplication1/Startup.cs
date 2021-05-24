@@ -18,6 +18,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using WebApplication1;
 
 namespace list.Web
 {
@@ -73,7 +74,7 @@ namespace list.Web
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseLogUrl();
             app.UseAuthentication();    // аутентификация
             app.UseAuthorization();     // авторизация
 
