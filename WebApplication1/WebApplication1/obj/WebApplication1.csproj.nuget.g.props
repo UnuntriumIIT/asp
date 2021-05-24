@@ -23,5 +23,6 @@
     <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\zepho\.nuget\packages\newtonsoft.json\10.0.1</PkgNewtonsoft_Json>
     <PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets Condition=" '$(PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets)' == '' ">C:\Users\zepho\.nuget\packages\microsoft.visualstudio.azure.containers.tools.targets\1.10.13</PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets>
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\zepho\.nuget\packages\microsoft.entityframeworkcore.tools\5.0.6</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgEntityFramework Condition=" '$(PkgEntityFramework)' == '' ">C:\Users\zepho\.nuget\packages\entityframework\6.1.0</PkgEntityFramework>
   </PropertyGroup>
 </Project>

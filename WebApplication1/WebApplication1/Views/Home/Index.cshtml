@@ -1,42 +1,47 @@
 ﻿@model IEnumerable<TodoItemViewModel>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная";
 }
 
-    <div class="container-fluid d-flex flex-column align-items-center">
-        <h1 class="text-decoration-none">TODOS</h1>
+<div class="container-fluid d-flex flex-column align-items-center">
+    <h1 class="text-decoration-none">Список задач</h1>
 
-        <a class="btn btn-success w-25 m-3" asp-action="Create">New Task</a>
+    <a class="btn btn-success w-25 m-3" asp-action="Create">Новая задача</a>
+    @if (!ViewContext.HttpContext.User.Identity.IsAuthenticated)
+    {
+        <a class="btn btn-success" href="/Account/Login">Вход</a>
+    }
+    @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+    {
+<a class="btn btn-success" href="/Account/Profile">Профиль</a>}
 
-        <div class="row d-flex justify-content-around buttons">
-            <a class="btn btn-light" asp-action="Index"><i class="far fa-circle text-info"></i> All</a>
-            <a class="btn btn-light" asp-action="Index" asp-route-completed="false"><i class="fas fa-times text-danger"></i> Active</a>
-            <a class="btn btn-light" asp-action="Index" asp-route-completed="true"><i class="fas fa-check text-success"></i> Completed</a>
-            <a class="btn btn-light" asp-action="ClearCompleted">Clear Completed</a>
-        </div>
-        @foreach (var item in Model)
-        {
-            <div class="row task d-flex justify-content-between align-items-center todo-item">
-                @if (item.IsCompleted)
-                {
-                    <i class="fas fa-check text-success"></i>
-                }
-                else
-                {
-                    <i class="fas fa-times text-danger"></i>
-                }
-
-                <h3>@item.Title</h3>
-
-                <div>
-                    <a asp-action="Edit" asp-route-id="@item.Id">
-                        <button type="button" class="btn btn-info"><i class="fas fa-pencil-alt"></i></button>
-                    </a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">
-                        <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
-                    </a>
-                </div>
-            </div>
-        }
+    <div class="row d-flex justify-content-around buttons">
+        <a class="btn btn-light" asp-action="Index"><i class="far fa-circle text-info"></i> Все</a>
+        <a class="btn btn-light" asp-action="Index" asp-route-completed="false"><i class="fas fa-times text-danger"></i> Активные</a>
+        <a class="btn btn-light" asp-action="Index" asp-route-completed="true"><i class="fas fa-check text-success"></i> Завершенные</a>
+        <a class="btn btn-light" asp-action="ClearCompleted">Очистить завершенные</a>
     </div>
+    @foreach (var item in Model)
+    {
+<div class="row task d-flex justify-content-between align-items-center todo-item">
+    @if (item.IsCompleted)
+    {
+<i class="fas fa-check text-success"></i> }
+else
+{
+<i class="fas fa-times text-danger"></i>}
+
+    <h3>@item.Title</h3>
+    <h5>@item.Creator</h5>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@item.Id">
+            <button type="button" class="btn btn-info"><i class="fas fa-pencil-alt"></i></button>
+        </a>
+        <a asp-action="Delete" asp-route-id="@item.Id">
+            <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+        </a>
+    </div>
+</div>}
+</div>

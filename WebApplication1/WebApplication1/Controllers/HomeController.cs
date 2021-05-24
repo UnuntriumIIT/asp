@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using list.Services;
 using list.data.Models;
 using list.Web.Models;
+using Microsoft.AspNetCore.Authorization;
+using WebApplication1.Models;
 
 namespace list.Web.Controllers
 {
+    [Authorize]
+    [Controller]
     public class HomeController : Controller
     {
         private readonly ITodoListServices _services;
@@ -19,10 +23,11 @@ namespace list.Web.Controllers
             _services = services;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index(bool? completed)
         {
             var todoItems = await
-                _services.GetAllAsync(0,100);
+            _services.GetAllAsync(0, 100);
 
             var items = ToViewModels(todoItems);
 
@@ -34,24 +39,33 @@ namespace list.Web.Controllers
             return View(items);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
-            TodoItemCreateModel model = new TodoItemCreateModel();
 
-            return View(model);
+            TodoItemCreateModel model = new TodoItemCreateModel();
+            if (User.Identity.IsAuthenticated)
+                return View(model);
+            else return Content("Вы должны войти!");
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Create(TodoItemCreateModel todoItem)
         {
-            var item = ToTodoItem(todoItem);
+            if (User.Identity.IsAuthenticated)
+            {
+                var item = ToTodoItem(todoItem);
+                item.Creator = User.Identity.Name;
 
-            _services.AddAsync(item).Wait();
+                _services.AddAsync(item).Wait();
+            }
 
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -67,6 +81,7 @@ namespace list.Web.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Edit(TodoItemEditModel model)
         {
@@ -80,6 +95,7 @@ namespace list.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(Guid id)
         {
             await _services.RemoveAsync(id);
@@ -87,6 +103,7 @@ namespace list.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult ClearCompleted()
         {
             _services.ClearCompletedAsync().Wait();
@@ -94,29 +111,28 @@ namespace list.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+        [AllowAnonymous]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Authorize]
         private TodoItem ToTodoItem(TodoItemCreateModel model)
         {
             var todoItem = new TodoItem
             {
                 Id = Guid.NewGuid(),
                 Title = model.Title,
-                IsCompleted = model.IsCompleted
-            };
+                IsCompleted = model.IsCompleted,
+                Creator = User.Identity.Name
+        };
 
             return todoItem;
         }
 
+        [AllowAnonymous]
         private IEnumerable<TodoItemViewModel> ToViewModels(IEnumerable<TodoItem> collention)
         {
             IEnumerable<TodoItemViewModel> items = collention.Select(x =>
@@ -124,13 +140,15 @@ namespace list.Web.Controllers
                 {
                     Id = x.Id,
                     IsCompleted = x.IsCompleted,
-                    Title = x.Title
+                    Title = x.Title,
+                    Creator = x.Creator
                 }
             );
 
             return items;
         }
 
+        [Authorize]
         private TodoItemEditModel ToEditModel(TodoItem item)
         {
             var model = new TodoItemEditModel
@@ -138,7 +156,7 @@ namespace list.Web.Controllers
                 Id = item.Id,
                 Title = item.Title,
                 IsCompleted = item.IsCompleted
-            };
+        };
 
             return model;
         }

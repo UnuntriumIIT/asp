@@ -1,23 +1,23 @@
 ﻿@model TodoItemCreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Создание";
 }
 
-<a asp-action="Index" class="btn btn-link">< Back to list</a>
+<a asp-action="Index" class="btn btn-link">< На главную</a>
 
 <form method="post" asp-action="Create" class="w-25">
     <fieldset>
-        <legend>Create New Task</legend>
+        <legend>Создать задачу</legend>
         <div class="form-group">
-            <label asp-for="Title"></label>
+            <label asp-for="Title">Задача</label>
             <input type="text" asp-for="Title" class="form-control" required/>
         </div>
         <div class="form-check">
             <input type="checkbox" asp-for="IsCompleted"/>
-            <label asp-for="IsCompleted"></label>
+            <label asp-for="IsCompleted">Завершено</label>
         </div>
 
-        <button type="submit" class="btn btn-success">Create</button>
+        <button type="submit" class="btn btn-success">Создать</button>
     </fieldset>
 </form>

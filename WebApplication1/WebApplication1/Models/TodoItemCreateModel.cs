@@ -14,5 +14,6 @@ namespace list.Web.Models
 
         [Required]
         public bool IsCompleted { get; set; }
+        public string Creator { get; set; }
     }
 }

@@ -1,0 +1,15 @@
+﻿@model WebApplication1.Models.ProfileModel
+
+<h2>Профиль</h2>
+
+<a asp-action="Index" asp-controller="/" class="btn btn-link">< Back to list</a>
+<a class="btn btn-success w-25 m-3" asp-action="Logout">Выход</a>
+<div>
+
+    <div>
+        <label asp-for="Id">ID</label> <span asp-validation-for="Id">@Model.Id</span>
+    </div>
+    <div>
+        <label asp-for="Username">Username</label> <span asp-validation-for="Username">@Model.Username</span>
+    </div>
+</div>

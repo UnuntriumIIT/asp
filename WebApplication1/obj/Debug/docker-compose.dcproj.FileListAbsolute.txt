@@ -1,3 +1,5 @@
+C:\Users\zepho\source\repos\WebApplication1\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
+Q:\Desktop\asp\WebApplication1\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\WebApplication1.Views.dll
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\WebApplication1.Views.pdb
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\WebApplication1.deps.json
@@ -9,9 +11,9 @@ C:\Users\zepho\source\repos\WebApplication1\bin\Debug\WebApplication1.exe
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\WebApplication1.dll
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\data.dll
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\Microsoft.EntityFrameworkCore.dll
+C:\Users\zepho\source\repos\WebApplication1\bin\Debug\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\ClassLibrary1.dll
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\zepho\source\repos\WebApplication1\bin\Debug\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\System.Diagnostics.DiagnosticSource.dll
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
@@ -20,5 +22,4 @@ C:\Users\zepho\source\repos\WebApplication1\bin\Debug\WebApplication1.pdb
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\data.pdb
 C:\Users\zepho\source\repos\WebApplication1\bin\Debug\ClassLibrary1.pdb
 C:\Users\zepho\source\repos\WebApplication1\obj\Debug\docker-compose.dcprojAssemblyReference.cache
-C:\Users\zepho\source\repos\WebApplication1\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\zepho\source\repos\WebApplication1\obj\Debug\docker-compose.dcproj.CopyComplete

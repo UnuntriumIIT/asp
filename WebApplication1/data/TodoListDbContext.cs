@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using list.data.Models;
+using data.Models;
 
 namespace list.data
 {
     public class TodoListDbContext : DbContext
     {
+        public DbSet<User> User { get; set; }
         public TodoListDbContext(DbContextOptions options) : base(options)
         {
 
@@ -35,6 +37,22 @@ namespace list.data
 
                 entity.Property(e => e.IsCompleted)
                     .HasColumnName("isCompleted")
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.id);
+
+                entity.Property(e => e.id)
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Username)
+                    .HasColumnName("username")
+                    .IsRequired();
+
+                entity.Property(e => e.Password)
+                    .HasColumnName("password")
                     .IsRequired();
             });
         }
